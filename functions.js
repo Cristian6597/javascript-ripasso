@@ -2,7 +2,7 @@ console.log('Hello World')
 
 //recorsive functions
 
-const countdown = (num) => {
+/* const countdown = (num) => {
     // for (let i = num; i >= 0; i--) {
     //     console.log(i)
     // }
@@ -10,30 +10,30 @@ const countdown = (num) => {
         console.log(num);
         countdown(num-1);
     }
-}
+} */
 
 //countdown(10);
 
 
 //Closure
 
-// const counter = () => {
-//     let count = 0;
-//     return () => {
-//         return ++count;
-//     }
-// }
+/* const counter = () => {
+    let count = 0;
+    return () => {
+        return ++count;
+    }
+}
 
-// const firstCounter = counter();
+const firstCounter = counter();
 
-// firstCounter();
+firstCounter();
 
-// console.log(firstCounter());
+console.log(firstCounter()); */
 
 
 //simulazione useState con closure
 
-const useState = (initialState) => {
+/* const useState = (initialState) => {
     let state = initialState;
     return (newState) => {
         state = newState;
@@ -56,14 +56,14 @@ const user = {
 };
 
 user.firstName = "Luca" //modificato la proprietà all'interno dell oggetto dall'esterno
-console.log(user.fullName())
+console.log(user.fullName()) */
 
 //esercizio, fare una calcolatrice con la closure, almeno addizione sottrazione e uguale
 
 
-let n = 5 // farlo prendere da un input
+//let n = 5 // farlo prendere da un input
 
-const calcolatrice = () => {
+/* const calcolatrice = () => {
     let risultato = n
     console.log("il numero iniziale è " + risultato)
 return {
@@ -79,28 +79,31 @@ return {
         risultato = 0
         return risultato
     }
-}
-}
+} */
+// }
 
-const calcolo = calcolatrice();
+/* const calcolo = calcolatrice();
 console.log(calcolo.somma(2))
 console.log(calcolo.sottrazione(2))
 console.log(calcolo.reset())
+ */
+
+const calc = (n = 0) => {
+    let result = n;
+    const operations = {
+        add: (num) => {
+            result += num;
+            return operations;
+        },
+        sub : (num) => {
+            result -= num;
+            return operations;
+        },
+        equal: () => result //nelle arrow function se non si mettono le graffe equivale a "return", in questo caso "return result"
+    } 
+    return operations;
+}
+
+console.log(calc(22).add(5).sub(2).equal())
 
 
-
-
-
-
-// const counter = () => {
-//     let count = 0;
-//     return () => {
-//         return ++count;
-//     }
-// }
-
-// const firstCounter = counter();
-
-// firstCounter();
-
-// console.log(firstCounter());
