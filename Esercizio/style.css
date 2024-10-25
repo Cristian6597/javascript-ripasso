@@ -1,0 +1,14 @@
+#img {
+    display: flex;
+    flex-wrap: wrap; /* Le immagini andranno a capo se la riga è piena */
+    gap: 10px;       
+}
+
+#img div {
+    display: inline-block;
+}
+
+#img img {
+    width: 150px; 
+    height: auto;
+}
