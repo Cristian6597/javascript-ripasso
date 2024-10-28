@@ -15,10 +15,13 @@ console.log(3)
 const error = false;
 console.log(1);
 const sleep = new Promise((res, rej) => {
+    if (error) {
+        rej ("non ho mantenuto la promessa")
+    } else {
     setTimeout(() => {
         console.log(2)
         res("daje roma")
-    }, 2000);
+    }, 2000)}
 });
 console.log(3);
 
