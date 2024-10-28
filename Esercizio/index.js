@@ -16,5 +16,4 @@ fetch('https://jsonplaceholder.typicode.com/photos')
     })
     .catch((err) => {
         console.log('Errore: ', err);
-        loading.textContent= 'Errore!!!'
     });
