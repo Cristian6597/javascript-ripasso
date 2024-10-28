@@ -33,6 +33,10 @@ const todoManager = () => { //closeure
         add: function (newElement) {
             state.unshift(newElement);
             this.render();
+        },
+        delete: function(deleteElement) {
+            state.delete(deleteElement)
+            this.render();
         }
     }
 }
