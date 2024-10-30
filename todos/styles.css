@@ -1,0 +1,38 @@
+/* Stile del contenitore di ogni todo */
+.contenitore {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spinge il bottone "X" a destra */
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+/* Stile per il contenuto del todo (checkbox e testo) */
+.todo-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Crea spazio tra la checkbox e il testo scritto */
+.todo-content label {
+    margin-left: 8px;
+}
+
+/* Stile del bottone X (da rivedere probabilmente) */
+.close-btn {
+    scale: 70%;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    display: none; /* Nascondi il bottone inizialmente */
+}
+
+/* Il tasto X appare quando ci passo il mouse */
+.contenitore:hover .close-btn {
+    display: block;
+}
