@@ -32,7 +32,7 @@ const createTodoDiv = (todo) => {
             method: 'DELETE'
         });
     });
-
+    
     return div;
 }
 
@@ -57,7 +57,7 @@ const todoManager = (() => { // Closure
         },
         delete: function(deleteElementId) { // Usa l'ID per identificare il TODO da rimuovere
             // Trova l'indice dell'elemento da rimuovere
-            const index = state.findIndex(todo => todo.id === deleteElementId);
+            const index = state.findIndex(todo => todo.id === deleteElementId); //todo è un placeholder in questo caso, ci si può mettere tutto
             if (index !== -1) {
                 state.splice(index, 1); // è un controllo che serve a verificare se findIndex trova quello che cerchiamo, se lo trova resistuisce numero positivo
                 //altrimenti è negativo
