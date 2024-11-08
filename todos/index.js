@@ -1,4 +1,4 @@
-const baseUrl = 'https://jsonplaceholder.typicode.com';
+const baseUrl = 'http://localhost:3000'; /* 'https://jsonplaceholder.typicode.com'; */
 const loading = document.querySelector('#todos .loading');
 const todoDiv = document.querySelector('#todos');
 
@@ -16,7 +16,12 @@ const createTodoDiv = (todo) => {
     input.id = todo.id; // ID del TODO, non ho capito ancora bene come prende l'id ma funziona
     input.checked = todo.completed;
     input.onchange = handleCheckbox;
-    const label = document.createElement('label');
+    //cosi facendo è possibile scrivere nei todo e modificarli
+    const label = document.createElement('input');
+    label.value = todo.title;
+    label.onchange = (e) => {
+        handleChange(todo, label.value); //label.value si può sostituire da e.target.value perchè e è il parametro
+    }
     label.textContent = todo.title;
 
     todoContent.appendChild(input); // Mostra tutto in pagina
@@ -35,6 +40,22 @@ const createTodoDiv = (todo) => {
     
     return div;
 }
+
+
+function handleChange(todo, newTitle) {
+    fetch(baseUrl + '/todos/' + todo.it,{ 
+        method : 'PATCH', 
+        body: JSON.stringify({ title: newTitle }),
+        headers: {'Content-Type' : 'application/json'} //ci ridà l'oggetto aggiornato, ci aspettiamo come risposta un json
+    })
+    .then(res => res.json())
+    .then(newTodo => {
+        /* console.log(newTodo); */ //lo mette in console ma non lo cambia visivamente
+        firstTodos.update(newTodo);
+    })
+}
+
+/* const firstTodos = todoManager(); */ //rompe tutto
 
 // Manager delle funzionalità
 const todoManager = (() => { // Closure
@@ -63,6 +84,10 @@ const todoManager = (() => { // Closure
                 //altrimenti è negativo
             }
             this.render(); // Rendi di nuovo la lista
+        },
+        update: function(newTodo) {
+            const index = state.findIndex(todo => todo.id === newTodo.id);
+            state.splice(index, 1, newTodo);
         }
     };
 })();
