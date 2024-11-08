@@ -43,7 +43,7 @@ const createTodoDiv = (todo) => {
 
 
 function handleChange(todo, newTitle) {
-    fetch(baseUrl + '/todos/' + todo.it,{ 
+    fetch(baseUrl + '/todos/' + todo.id,{ 
         method : 'PATCH', 
         body: JSON.stringify({ title: newTitle }),
         headers: {'Content-Type' : 'application/json'} //ci ridà l'oggetto aggiornato, ci aspettiamo come risposta un json
@@ -55,7 +55,7 @@ function handleChange(todo, newTitle) {
     })
 }
 
-/* const firstTodos = todoManager(); */ //rompe tutto
+
 
 // Manager delle funzionalità
 const todoManager = (() => { // Closure
@@ -90,8 +90,9 @@ const todoManager = (() => { // Closure
             state.splice(index, 1, newTodo);
         }
     };
-})();
+})(); //togliere le ultime due parentesi
 
+const firstTodos = todoManager; // rimpiazzare tutti i todomanager con firstTodos e rendere il manager todoManager(), togliendo le parantesi al manager sopra
 
 fetch(baseUrl + '/todos')
 .then(response => response.json())
